@@ -6,7 +6,7 @@
 #
 Name     : freeipmi
 Version  : 1.5.7
-Release  : 1
+Release  : 2
 URL      : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.5.7.tar.gz
 Source0  : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.5.7.tar.gz
 Source99 : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.5.7.tar.gz.sig
@@ -79,7 +79,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507217884
+export SOURCE_DATE_EPOCH=1507222371
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
@@ -91,13 +91,13 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1507217884
+export SOURCE_DATE_EPOCH=1507222371
 rm -rf %{buildroot}
 %make_install
 
 %files
 %defattr(-,root,root,-)
-/var/lib/freeipmi/ipckey
+%exclude /var/lib/freeipmi/ipckey
 
 %files bin
 %defattr(-,root,root,-)
