@@ -6,7 +6,7 @@
 #
 Name     : freeipmi
 Version  : 1.5.7
-Release  : 2
+Release  : 3
 URL      : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.5.7.tar.gz
 Source0  : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.5.7.tar.gz
 Source99 : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.5.7.tar.gz.sig
