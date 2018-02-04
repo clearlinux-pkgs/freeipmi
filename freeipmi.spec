@@ -5,14 +5,14 @@
 # Source0 file verified with key 0x3EFB7C4BE8303927 (chu11@llnl.gov)
 #
 Name     : freeipmi
-Version  : 1.5.7
-Release  : 3
-URL      : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.5.7.tar.gz
-Source0  : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.5.7.tar.gz
-Source99 : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.5.7.tar.gz.sig
+Version  : 1.6.1
+Release  : 4
+URL      : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.6.1.tar.gz
+Source0  : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.6.1.tar.gz
+Source99 : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.6.1.tar.gz.sig
 Summary  : FreeIPMI
 Group    : Development/Tools
-License  : GPL-2.0+ GPL-3.0
+License  : BSD-3-Clause GPL-2.0+ GPL-3.0
 Requires: freeipmi-bin
 Requires: freeipmi-lib
 Requires: freeipmi-doc
@@ -72,16 +72,16 @@ lib components for the freeipmi package.
 
 
 %prep
-%setup -q -n freeipmi-1.5.7
+%setup -q -n freeipmi-1.6.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507222371
+export SOURCE_DATE_EPOCH=1517766033
 %configure --disable-static
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %check
 export LANG=C
@@ -91,7 +91,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1507222371
+export SOURCE_DATE_EPOCH=1517766033
 rm -rf %{buildroot}
 %make_install
 
@@ -404,10 +404,10 @@ rm -rf %{buildroot}
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libfreeipmi.so.17
-/usr/lib64/libfreeipmi.so.17.1.4
+/usr/lib64/libfreeipmi.so.17.2.0
 /usr/lib64/libipmiconsole.so.2
-/usr/lib64/libipmiconsole.so.2.3.4
+/usr/lib64/libipmiconsole.so.2.3.5
 /usr/lib64/libipmidetect.so.0
-/usr/lib64/libipmidetect.so.0.0.0
+/usr/lib64/libipmidetect.so.0.0.1
 /usr/lib64/libipmimonitoring.so.6
-/usr/lib64/libipmimonitoring.so.6.0.6
+/usr/lib64/libipmimonitoring.so.6.0.7
