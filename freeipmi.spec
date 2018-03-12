@@ -6,10 +6,10 @@
 #
 Name     : freeipmi
 Version  : 1.6.1
-Release  : 4
-URL      : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.6.1.tar.gz
-Source0  : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.6.1.tar.gz
-Source99 : https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.6.1.tar.gz.sig
+Release  : 5
+URL      : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.1.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.1.tar.gz
+Source99 : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.1.tar.gz.sig
 Summary  : FreeIPMI
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-2.0+ GPL-3.0
@@ -79,7 +79,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1517766033
+export SOURCE_DATE_EPOCH=1520830048
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -91,7 +91,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1517766033
+export SOURCE_DATE_EPOCH=1520830048
 rm -rf %{buildroot}
 %make_install
 
