@@ -1,3 +1,13 @@
+FreeIPMI 1.6.2 - 05/03/18
+-------------------------
+o Fix error in bridging where bridged requests were sent to the wrong
+  LUN.
+o Fix command parsing bugs in legacy ipmi-config scripts
+  (i.e. bmc-config, ipmi-pef-config, etc.)
+o Do not output full path of daemons in syslog, output only the daemon
+  name (i.e. output "ipmidetected" instead of "/usr/sbin/ipmidetectd").
+o Update channel range from 0-7 to 0-11, per errata IPMI update.
+
 FreeIPMI 1.6.1 - 02/02/18
 -------------------------
 o Add IPv6 hostname support to FreeIPMI, all of FreeIPMI can now take

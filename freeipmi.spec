@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x3EFB7C4BE8303927 (chu11@llnl.gov)
 #
 Name     : freeipmi
-Version  : 1.6.1
-Release  : 5
-URL      : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.1.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.1.tar.gz
-Source99 : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.1.tar.gz.sig
+Version  : 1.6.2
+Release  : 6
+URL      : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.2.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.2.tar.gz
+Source99 : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.2.tar.gz.sig
 Summary  : FreeIPMI
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-2.0+ GPL-3.0
@@ -72,14 +72,14 @@ lib components for the freeipmi package.
 
 
 %prep
-%setup -q -n freeipmi-1.6.1
+%setup -q -n freeipmi-1.6.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1520830048
+export SOURCE_DATE_EPOCH=1525634562
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -91,7 +91,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1520830048
+export SOURCE_DATE_EPOCH=1525634562
 rm -rf %{buildroot}
 %make_install
 
@@ -404,7 +404,7 @@ rm -rf %{buildroot}
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libfreeipmi.so.17
-/usr/lib64/libfreeipmi.so.17.2.0
+/usr/lib64/libfreeipmi.so.17.2.1
 /usr/lib64/libipmiconsole.so.2
 /usr/lib64/libipmiconsole.so.2.3.5
 /usr/lib64/libipmidetect.so.0
