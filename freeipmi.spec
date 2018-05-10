@@ -6,7 +6,7 @@
 #
 Name     : freeipmi
 Version  : 1.6.2
-Release  : 6
+Release  : 7
 URL      : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.2.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.2.tar.gz
 Source99 : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.2.tar.gz.sig
