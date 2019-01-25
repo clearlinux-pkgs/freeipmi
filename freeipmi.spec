@@ -5,18 +5,19 @@
 # Source0 file verified with key 0x3EFB7C4BE8303927 (chu11@llnl.gov)
 #
 Name     : freeipmi
-Version  : 1.6.2
-Release  : 7
-URL      : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.2.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.2.tar.gz
-Source99 : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.2.tar.gz.sig
-Summary  : FreeIPMI
+Version  : 1.6.3
+Release  : 8
+URL      : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.3.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.3.tar.gz
+Source99 : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.3.tar.gz.sig
+Summary  : sensor monitoring, system event monitoring, power control, and serial-over-LAN (SOL)
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-2.0+ GPL-3.0
-Requires: freeipmi-bin
-Requires: freeipmi-lib
-Requires: freeipmi-doc
-Requires: freeipmi-config
+Requires: freeipmi-bin = %{version}-%{release}
+Requires: freeipmi-lib = %{version}-%{release}
+Requires: freeipmi-license = %{version}-%{release}
+Requires: freeipmi-man = %{version}-%{release}
+Requires: freeipmi-services = %{version}-%{release}
 BuildRequires : libgcrypt-dev
 BuildRequires : libgpg-error-dev
 BuildRequires : pkgconfig(systemd)
@@ -30,26 +31,20 @@ Platform Management Interface specification.
 %package bin
 Summary: bin components for the freeipmi package.
 Group: Binaries
-Requires: freeipmi-config
+Requires: freeipmi-license = %{version}-%{release}
+Requires: freeipmi-man = %{version}-%{release}
+Requires: freeipmi-services = %{version}-%{release}
 
 %description bin
 bin components for the freeipmi package.
 
 
-%package config
-Summary: config components for the freeipmi package.
-Group: Default
-
-%description config
-config components for the freeipmi package.
-
-
 %package dev
 Summary: dev components for the freeipmi package.
 Group: Development
-Requires: freeipmi-lib
-Requires: freeipmi-bin
-Provides: freeipmi-devel
+Requires: freeipmi-lib = %{version}-%{release}
+Requires: freeipmi-bin = %{version}-%{release}
+Provides: freeipmi-devel = %{version}-%{release}
 
 %description dev
 dev components for the freeipmi package.
@@ -58,6 +53,7 @@ dev components for the freeipmi package.
 %package doc
 Summary: doc components for the freeipmi package.
 Group: Documentation
+Requires: freeipmi-man = %{version}-%{release}
 
 %description doc
 doc components for the freeipmi package.
@@ -66,20 +62,45 @@ doc components for the freeipmi package.
 %package lib
 Summary: lib components for the freeipmi package.
 Group: Libraries
+Requires: freeipmi-license = %{version}-%{release}
 
 %description lib
 lib components for the freeipmi package.
 
 
+%package license
+Summary: license components for the freeipmi package.
+Group: Default
+
+%description license
+license components for the freeipmi package.
+
+
+%package man
+Summary: man components for the freeipmi package.
+Group: Default
+
+%description man
+man components for the freeipmi package.
+
+
+%package services
+Summary: services components for the freeipmi package.
+Group: Systemd services
+
+%description services
+services components for the freeipmi package.
+
+
 %prep
-%setup -q -n freeipmi-1.6.2
+%setup -q -n freeipmi-1.6.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1525634562
+export SOURCE_DATE_EPOCH=1548425729
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -91,8 +112,22 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1525634562
+export SOURCE_DATE_EPOCH=1548425729
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/freeipmi
+cp COPYING %{buildroot}/usr/share/package-licenses/freeipmi/COPYING
+cp COPYING.ZRESEARCH %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ZRESEARCH
+cp COPYING.bmc-watchdog %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.bmc-watchdog
+cp COPYING.ipmi-dcmi %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmi-dcmi
+cp COPYING.ipmi-fru %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmi-fru
+cp COPYING.ipmiconsole %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmiconsole
+cp COPYING.ipmidetect %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmidetect
+cp COPYING.ipmimonitoring %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmimonitoring
+cp COPYING.ipmiping %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmiping
+cp COPYING.ipmipower %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmipower
+cp COPYING.ipmiseld %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmiseld
+cp COPYING.pstdout %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.pstdout
+cp COPYING.sunbmc %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.sunbmc
 %make_install
 
 %files
@@ -132,12 +167,6 @@ rm -rf %{buildroot}
 /usr/bin/pef-config
 /usr/bin/rmcp-ping
 /usr/bin/rmcpping
-
-%files config
-%defattr(-,root,root,-)
-/usr/lib/systemd/system/bmc-watchdog.service
-/usr/lib/systemd/system/ipmidetectd.service
-/usr/lib/systemd/system/ipmiseld.service
 
 %files dev
 %defattr(-,root,root,-)
@@ -391,23 +420,95 @@ rm -rf %{buildroot}
 /usr/lib64/pkgconfig/libipmiconsole.pc
 /usr/lib64/pkgconfig/libipmidetect.pc
 /usr/lib64/pkgconfig/libipmimonitoring.pc
+/usr/share/man/man3/libfreeipmi.3
+/usr/share/man/man3/libipmiconsole.3
+/usr/share/man/man3/libipmidetect.3
+/usr/share/man/man3/libipmimonitoring.3
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/doc/freeipmi/*
 %doc /usr/share/info/*
-%doc /usr/share/man/man3/*
-%doc /usr/share/man/man5/*
-%doc /usr/share/man/man7/*
-%doc /usr/share/man/man8/*
 
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libfreeipmi.so.17
-/usr/lib64/libfreeipmi.so.17.2.1
+/usr/lib64/libfreeipmi.so.17.2.2
 /usr/lib64/libipmiconsole.so.2
 /usr/lib64/libipmiconsole.so.2.3.5
 /usr/lib64/libipmidetect.so.0
 /usr/lib64/libipmidetect.so.0.0.1
 /usr/lib64/libipmimonitoring.so.6
-/usr/lib64/libipmimonitoring.so.6.0.7
+/usr/lib64/libipmimonitoring.so.6.0.8
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/freeipmi/COPYING
+/usr/share/package-licenses/freeipmi/COPYING.ZRESEARCH
+/usr/share/package-licenses/freeipmi/COPYING.bmc-watchdog
+/usr/share/package-licenses/freeipmi/COPYING.ipmi-dcmi
+/usr/share/package-licenses/freeipmi/COPYING.ipmi-fru
+/usr/share/package-licenses/freeipmi/COPYING.ipmiconsole
+/usr/share/package-licenses/freeipmi/COPYING.ipmidetect
+/usr/share/package-licenses/freeipmi/COPYING.ipmimonitoring
+/usr/share/package-licenses/freeipmi/COPYING.ipmiping
+/usr/share/package-licenses/freeipmi/COPYING.ipmipower
+/usr/share/package-licenses/freeipmi/COPYING.ipmiseld
+/usr/share/package-licenses/freeipmi/COPYING.pstdout
+/usr/share/package-licenses/freeipmi/COPYING.sunbmc
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man5/bmc-config.conf.5
+/usr/share/man/man5/freeipmi.conf.5
+/usr/share/man/man5/freeipmi_interpret_sel.conf.5
+/usr/share/man/man5/freeipmi_interpret_sensor.conf.5
+/usr/share/man/man5/ipmi-config.conf.5
+/usr/share/man/man5/ipmi_monitoring_sensors.conf.5
+/usr/share/man/man5/ipmiconsole.conf.5
+/usr/share/man/man5/ipmidetect.conf.5
+/usr/share/man/man5/ipmidetectd.conf.5
+/usr/share/man/man5/ipmimonitoring.conf.5
+/usr/share/man/man5/ipmimonitoring_sensors.conf.5
+/usr/share/man/man5/ipmipower.conf.5
+/usr/share/man/man5/ipmiseld.conf.5
+/usr/share/man/man5/libipmiconsole.conf.5
+/usr/share/man/man5/libipmimonitoring.conf.5
+/usr/share/man/man7/freeipmi.7
+/usr/share/man/man8/bmc-config.8
+/usr/share/man/man8/bmc-device.8
+/usr/share/man/man8/bmc-info.8
+/usr/share/man/man8/bmc-watchdog.8
+/usr/share/man/man8/ipmi-chassis-config.8
+/usr/share/man/man8/ipmi-chassis.8
+/usr/share/man/man8/ipmi-config.8
+/usr/share/man/man8/ipmi-console.8
+/usr/share/man/man8/ipmi-dcmi.8
+/usr/share/man/man8/ipmi-detect.8
+/usr/share/man/man8/ipmi-fru.8
+/usr/share/man/man8/ipmi-locate.8
+/usr/share/man/man8/ipmi-oem.8
+/usr/share/man/man8/ipmi-pef-config.8
+/usr/share/man/man8/ipmi-pet.8
+/usr/share/man/man8/ipmi-ping.8
+/usr/share/man/man8/ipmi-power.8
+/usr/share/man/man8/ipmi-raw.8
+/usr/share/man/man8/ipmi-sel.8
+/usr/share/man/man8/ipmi-sensors-config.8
+/usr/share/man/man8/ipmi-sensors.8
+/usr/share/man/man8/ipmiconsole.8
+/usr/share/man/man8/ipmidetect.8
+/usr/share/man/man8/ipmidetectd.8
+/usr/share/man/man8/ipmimonitoring.8
+/usr/share/man/man8/ipmiping.8
+/usr/share/man/man8/ipmipower.8
+/usr/share/man/man8/ipmiseld.8
+/usr/share/man/man8/pef-config.8
+/usr/share/man/man8/rmcp-ping.8
+/usr/share/man/man8/rmcpping.8
+
+%files services
+%defattr(-,root,root,-)
+/usr/lib/systemd/system/bmc-watchdog.service
+/usr/lib/systemd/system/ipmidetectd.service
+/usr/lib/systemd/system/ipmiseld.service

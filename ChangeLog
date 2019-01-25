@@ -1,3 +1,74 @@
+2019-01-23 Albert Chu <chu11@llnl.gov>
+
+	* Document that "opensesspriv" workaround works on Dell C5220.
+
+2019-01-17 Albert Chu <chu11@llnl.gov>
+
+	* libfreeipmi/api: Add workaround for out of order packets with
+	lan / rmcpplus ipmb.
+
+2018-09-14 Albert Chu <chu11@llnl.gov>
+
+	* libfreeipmi/include/freeipmi/spec/ipmi-product-id-spec.h: Add
+	Intel S2600WP product id.
+
+	* libfreeipmi/sel: Support Intel S2600WP motherboard OEM sel
+	events.
+
+	* ipmi-sensors: Support Intel S2600WP OEM sensors.
+
+2018-12-13 Albert Chu <chu11@llnl.gov>
+
+	* libipmimonitoring: Fix discrete reading working.
+
+	* contrib: Fix corner case libipmimonitoring-sensors example.
+
+2018-10-24 Albert Chu <chu11@llnl.gov>
+
+	* libfreeipmi/locate/ipmi-locate-acpi-spmi.c: Fix compiler
+	warnings.
+
+2018-07-30 Albert Chu <chu11@llnl.gov>
+
+	* Support Intel S2600GZ OEM sensors and SEL events.
+
+2018-08-01 dann frazier <dann.frazier@canonical.com>
+
+	* libfreeipmi/locate/ipmi-locate-acpi-spmi.c: Don't try to
+	split the header off of the ACPI table, as it will be consumed
+	by the SPMI table template.
+
+	* libfreeipmi/locate/ipmi-locate-acpi-spmi.c: Add support for
+	parsing SPMI tables exposed via sysfs.
+
+	* libfreeipmi/locate/ipmi-locate-acpi-spmi.c: Allow sysfs SPMI
+	parsing on ARM platforms.
+
+	* libfreeipmi/locate/ipmi-locate-acpi-spmi.c: Correct order of
+	bytes in specification_revision field of ACPI SPMI table.
+
+2018-07-31 Albert Chu <chu11@llnl.gov>
+
+	* libfreeipmi/locate/ipmi-locate-acpi-spmi.c
+	(_ipmi_acpi_get_spmi_table): Fix corner case, break out of loop
+	once data found.
+
+2018-05-11 Albert Chu <chu11@llnl.gov>
+
+	* libfreeipmi/include/freeipmi/spec/ipmi-product-id-spec.h: Add
+	Gigabyte MG20-OP0-ZB product id and derived motherboards.
+
+	* libfreeipmi/sel: Support Gigabyte MG20-OP0-ZB motherboard OEM
+	sel events.
+
+2018-05-11 Albert Chu <chu11@llnl.gov>
+
+	* libipmiconsole/ipmiconsole.h.in: Update number of comments for
+	clarity.
+
+	* libipmimonitoring/ipmi_monitoring.h.in: Correct invalid comments
+	return code from ipmi_monitoring_sel_iterator_next.
+
 2018-05-03 Albert Chu <chu11@llnl.gov> and Anonymous
 
 	* libfreeipmi/include/spec/ipmi-channel-spec.h,
