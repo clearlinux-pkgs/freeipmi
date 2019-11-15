@@ -8,6 +8,12 @@ Configure miss: sys/ioccom.h
 Configure miss: linux/compiler.h usability
 Configure miss: linux/compiler.h presence
 Configure miss: linux/compiler.h
+Configure miss: stropts.h usability
+Configure miss: stropts.h presence
+Configure miss: stropts.h
+Configure miss: sys/stropts.h usability
+Configure miss: sys/stropts.h presence
+Configure miss: sys/stropts.h
 Configure miss: sys/ipmi.h usability
 Configure miss: sys/ipmi.h presence
 Configure miss: sys/ipmi.h

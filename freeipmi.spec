@@ -6,14 +6,15 @@
 #
 Name     : freeipmi
 Version  : 1.6.3
-Release  : 8
+Release  : 9
 URL      : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.3.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.3.tar.gz
-Source99 : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.3.tar.gz.sig
-Summary  : sensor monitoring, system event monitoring, power control, and serial-over-LAN (SOL)
+Source1 : https://mirrors.kernel.org/gnu/freeipmi/freeipmi-1.6.3.tar.gz.sig
+Summary  : FreeIPMI
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-2.0+ GPL-3.0
 Requires: freeipmi-bin = %{version}-%{release}
+Requires: freeipmi-info = %{version}-%{release}
 Requires: freeipmi-lib = %{version}-%{release}
 Requires: freeipmi-license = %{version}-%{release}
 Requires: freeipmi-man = %{version}-%{release}
@@ -32,7 +33,6 @@ Platform Management Interface specification.
 Summary: bin components for the freeipmi package.
 Group: Binaries
 Requires: freeipmi-license = %{version}-%{release}
-Requires: freeipmi-man = %{version}-%{release}
 Requires: freeipmi-services = %{version}-%{release}
 
 %description bin
@@ -45,6 +45,7 @@ Group: Development
 Requires: freeipmi-lib = %{version}-%{release}
 Requires: freeipmi-bin = %{version}-%{release}
 Provides: freeipmi-devel = %{version}-%{release}
+Requires: freeipmi = %{version}-%{release}
 
 %description dev
 dev components for the freeipmi package.
@@ -54,9 +55,18 @@ dev components for the freeipmi package.
 Summary: doc components for the freeipmi package.
 Group: Documentation
 Requires: freeipmi-man = %{version}-%{release}
+Requires: freeipmi-info = %{version}-%{release}
 
 %description doc
 doc components for the freeipmi package.
+
+
+%package info
+Summary: info components for the freeipmi package.
+Group: Default
+
+%description info
+info components for the freeipmi package.
 
 
 %package lib
@@ -94,45 +104,52 @@ services components for the freeipmi package.
 
 %prep
 %setup -q -n freeipmi-1.6.3
+cd %{_builddir}/freeipmi-1.6.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1548425729
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1573777895
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1548425729
+export SOURCE_DATE_EPOCH=1573777895
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/freeipmi
-cp COPYING %{buildroot}/usr/share/package-licenses/freeipmi/COPYING
-cp COPYING.ZRESEARCH %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ZRESEARCH
-cp COPYING.bmc-watchdog %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.bmc-watchdog
-cp COPYING.ipmi-dcmi %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmi-dcmi
-cp COPYING.ipmi-fru %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmi-fru
-cp COPYING.ipmiconsole %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmiconsole
-cp COPYING.ipmidetect %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmidetect
-cp COPYING.ipmimonitoring %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmimonitoring
-cp COPYING.ipmiping %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmiping
-cp COPYING.ipmipower %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmipower
-cp COPYING.ipmiseld %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.ipmiseld
-cp COPYING.pstdout %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.pstdout
-cp COPYING.sunbmc %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.sunbmc
+cp %{_builddir}/freeipmi-1.6.3/COPYING %{buildroot}/usr/share/package-licenses/freeipmi/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/freeipmi-1.6.3/COPYING.ZRESEARCH %{buildroot}/usr/share/package-licenses/freeipmi/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/freeipmi-1.6.3/COPYING.bmc-watchdog %{buildroot}/usr/share/package-licenses/freeipmi/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/freeipmi-1.6.3/COPYING.ipmi-dcmi %{buildroot}/usr/share/package-licenses/freeipmi/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/freeipmi-1.6.3/COPYING.ipmi-fru %{buildroot}/usr/share/package-licenses/freeipmi/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/freeipmi-1.6.3/COPYING.ipmiconsole %{buildroot}/usr/share/package-licenses/freeipmi/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/freeipmi-1.6.3/COPYING.ipmidetect %{buildroot}/usr/share/package-licenses/freeipmi/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/freeipmi-1.6.3/COPYING.ipmimonitoring %{buildroot}/usr/share/package-licenses/freeipmi/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/freeipmi-1.6.3/COPYING.ipmiping %{buildroot}/usr/share/package-licenses/freeipmi/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/freeipmi-1.6.3/COPYING.ipmipower %{buildroot}/usr/share/package-licenses/freeipmi/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/freeipmi-1.6.3/COPYING.ipmiseld %{buildroot}/usr/share/package-licenses/freeipmi/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/freeipmi-1.6.3/COPYING.pstdout %{buildroot}/usr/share/package-licenses/freeipmi/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/freeipmi-1.6.3/COPYING.sunbmc %{buildroot}/usr/share/package-licenses/freeipmi/6213979ebc8593e5f131c3b495c9b7c717a6526d
 %make_install
+## Remove excluded files
+rm -f %{buildroot}/var/lib/freeipmi/ipckey
 
 %files
 %defattr(-,root,root,-)
-%exclude /var/lib/freeipmi/ipckey
 
 %files bin
 %defattr(-,root,root,-)
@@ -170,7 +187,6 @@ cp COPYING.sunbmc %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.sunbm
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
 /usr/include/freeipmi/api/ipmi-api.h
 /usr/include/freeipmi/api/ipmi-chassis-cmds-api.h
 /usr/include/freeipmi/api/ipmi-dcmi-cmds-api.h
@@ -412,6 +428,11 @@ cp COPYING.sunbmc %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.sunbm
 /usr/include/freeipmi/util/ipmi-timestamp-util.h
 /usr/include/freeipmi/util/ipmi-util.h
 /usr/include/freeipmi/util/rmcp-util.h
+/usr/include/ipmi_monitoring.h
+/usr/include/ipmi_monitoring_bitmasks.h
+/usr/include/ipmi_monitoring_offsets.h
+/usr/include/ipmiconsole.h
+/usr/include/ipmidetect.h
 /usr/lib64/libfreeipmi.so
 /usr/lib64/libipmiconsole.so
 /usr/lib64/libipmidetect.so
@@ -428,7 +449,10 @@ cp COPYING.sunbmc %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.sunbm
 %files doc
 %defattr(0644,root,root,0755)
 %doc /usr/share/doc/freeipmi/*
-%doc /usr/share/info/*
+
+%files info
+%defattr(0644,root,root,0755)
+/usr/share/info/freeipmi-faq.info
 
 %files lib
 %defattr(-,root,root,-)
@@ -443,19 +467,8 @@ cp COPYING.sunbmc %{buildroot}/usr/share/package-licenses/freeipmi/COPYING.sunbm
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/freeipmi/COPYING
-/usr/share/package-licenses/freeipmi/COPYING.ZRESEARCH
-/usr/share/package-licenses/freeipmi/COPYING.bmc-watchdog
-/usr/share/package-licenses/freeipmi/COPYING.ipmi-dcmi
-/usr/share/package-licenses/freeipmi/COPYING.ipmi-fru
-/usr/share/package-licenses/freeipmi/COPYING.ipmiconsole
-/usr/share/package-licenses/freeipmi/COPYING.ipmidetect
-/usr/share/package-licenses/freeipmi/COPYING.ipmimonitoring
-/usr/share/package-licenses/freeipmi/COPYING.ipmiping
-/usr/share/package-licenses/freeipmi/COPYING.ipmipower
-/usr/share/package-licenses/freeipmi/COPYING.ipmiseld
-/usr/share/package-licenses/freeipmi/COPYING.pstdout
-/usr/share/package-licenses/freeipmi/COPYING.sunbmc
+/usr/share/package-licenses/freeipmi/6213979ebc8593e5f131c3b495c9b7c717a6526d
+/usr/share/package-licenses/freeipmi/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 
 %files man
 %defattr(0644,root,root,0755)
