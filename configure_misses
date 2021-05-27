@@ -1,32 +1,32 @@
 Configure miss: __attribute__
-Configure miss: asm/io.h usability
-Configure miss: asm/io.h presence
 Configure miss: asm/io.h
-Configure miss: sys/ioccom.h usability
-Configure miss: sys/ioccom.h presence
-Configure miss: sys/ioccom.h
-Configure miss: linux/compiler.h usability
-Configure miss: linux/compiler.h presence
-Configure miss: linux/compiler.h
-Configure miss: stropts.h usability
-Configure miss: stropts.h presence
-Configure miss: stropts.h
-Configure miss: sys/stropts.h usability
-Configure miss: sys/stropts.h presence
-Configure miss: sys/stropts.h
-Configure miss: sys/ipmi.h usability
-Configure miss: sys/ipmi.h presence
-Configure miss: sys/ipmi.h
-Configure miss: sys/int_types.h usability
-Configure miss: sys/int_types.h presence
-Configure miss: sys/int_types.h
-Configure miss: bmc_intf.h usability
-Configure miss: bmc_intf.h presence
+Configure miss: asm/io.h presence
+Configure miss: asm/io.h usability
 Configure miss: bmc_intf.h
-Configure miss: stristr
+Configure miss: bmc_intf.h presence
+Configure miss: bmc_intf.h usability
 Configure miss: cbrt
+Configure miss: linux/compiler.h
+Configure miss: linux/compiler.h presence
+Configure miss: linux/compiler.h usability
 Configure miss: sighandler_t
+Configure miss: stristr
+Configure miss: stropts.h
+Configure miss: stropts.h presence
+Configure miss: stropts.h usability
+Configure miss: sys/int_types.h
+Configure miss: sys/int_types.h presence
+Configure miss: sys/int_types.h usability
+Configure miss: sys/ioccom.h
+Configure miss: sys/ioccom.h presence
+Configure miss: sys/ioccom.h usability
+Configure miss: sys/ipmi.h
+Configure miss: sys/ipmi.h presence
+Configure miss: sys/ipmi.h usability
+Configure miss: sys/stropts.h
+Configure miss: sys/stropts.h presence
+Configure miss: sys/stropts.h usability
 Configure miss: thread-safe gethostbyname()
-Configure miss: whether tools should check for root before executing in-band IPMI communication
 Configure miss: whether program_invocation_name is declared
 Configure miss: whether program_invocation_short_name is declared
+Configure miss: whether tools should check for root before executing in-band IPMI communication
