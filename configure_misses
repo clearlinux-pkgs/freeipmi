@@ -1,4 +1,5 @@
 Configure miss: __attribute__
+Configure miss: alternate system config dir
 Configure miss: asm/io.h
 Configure miss: asm/io.h presence
 Configure miss: asm/io.h usability
@@ -6,9 +7,13 @@ Configure miss: bmc_intf.h
 Configure miss: bmc_intf.h presence
 Configure miss: bmc_intf.h usability
 Configure miss: cbrt
+Configure miss: getmsg
+Configure miss: inb
 Configure miss: linux/compiler.h
 Configure miss: linux/compiler.h presence
 Configure miss: linux/compiler.h usability
+Configure miss: outb
+Configure miss: putmsg
 Configure miss: sighandler_t
 Configure miss: stristr
 Configure miss: stropts.h
