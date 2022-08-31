@@ -871,6 +871,12 @@ libfreeipmi.so.17:ipmi_locate_dmidecode_get_device_info
 libfreeipmi.so.17:ipmi_locate_get_device_info
 libfreeipmi.so.17:ipmi_locate_pci_get_device_info
 libfreeipmi.so.17:ipmi_locate_smbios_get_device_info
+libfreeipmi.so.17:ipmi_md2_finish
+libfreeipmi.so.17:ipmi_md2_init
+libfreeipmi.so.17:ipmi_md2_update_data
+libfreeipmi.so.17:ipmi_md5_finish
+libfreeipmi.so.17:ipmi_md5_init
+libfreeipmi.so.17:ipmi_md5_update_data
 libfreeipmi.so.17:ipmi_network_recvfrom
 libfreeipmi.so.17:ipmi_network_sendto
 libfreeipmi.so.17:ipmi_obj_dump
