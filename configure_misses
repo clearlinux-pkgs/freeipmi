@@ -14,20 +14,14 @@ Configure miss: bmc_intf.h presence
 Configure miss: bmc_intf.h presence
 Configure miss: bmc_intf.h usability
 Configure miss: bmc_intf.h usability
-Configure miss: cbrt
-Configure miss: cbrt
 Configure miss: getmsg
 Configure miss: getmsg
-Configure miss: inb
-Configure miss: inb
 Configure miss: linux/compiler.h
 Configure miss: linux/compiler.h
 Configure miss: linux/compiler.h presence
 Configure miss: linux/compiler.h presence
 Configure miss: linux/compiler.h usability
 Configure miss: linux/compiler.h usability
-Configure miss: outb
-Configure miss: outb
 Configure miss: putmsg
 Configure miss: putmsg
 Configure miss: stristr

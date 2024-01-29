@@ -1,3 +1,19 @@
+FreeIPMI 1.6.14 - 01/27/24
+--------------------------
+o Fix build issue common to non-x86 systems.
+
+FreeIPMI 1.6.13 - 01/26/24
+--------------------------
+o Fix build issues on systems where inb/outb are declared with inline
+  assembly.
+o Add additional sensor/event interpretations.
+
+FreeIPMI 1.6.12 - 11/19/23
+--------------------------
+o Use poll() over select() to avoid fd limit in openipmi driver.
+o Fix potential portability problems on systems without cbrt().
+o Minor documentation updates.
+
 FreeIPMI 1.6.11 - 06/07/23
 --------------------------
 o Fix double free corner case in ipmiseld.
