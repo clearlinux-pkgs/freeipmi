@@ -1,0 +1,20 @@
+/builddir/build/BUILDROOT/freeipmi-1.6.14-19.x86_64/etc/:
+/builddir/build/BUILDROOT/freeipmi-1.6.14-19.x86_64/etc/freeipmi:
+/builddir/build/BUILDROOT/freeipmi-1.6.14-19.x86_64/etc/init.d:
+/builddir/build/BUILDROOT/freeipmi-1.6.14-19.x86_64/etc/sysconfig:
+bmc-watchdog
+bmc-watchdog
+freeipmi
+freeipmi.conf
+freeipmi_interpret_sel.conf
+freeipmi_interpret_sensor.conf
+init.d
+init.d
+ipmidetect.conf
+ipmidetectd
+ipmidetectd.conf
+ipmiseld
+ipmiseld.conf
+libipmiconsole.conf
+sysconfig
+sysconfig' ']'
